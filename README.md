@@ -3,7 +3,7 @@
 Редактор документов для Windows 10 и 11 с помощником-нейросетью: тексты, таблицы, печать, PDF.
 
 - **Сайт:** https://fsb-helper-ru.github.io/slovo/
-- **Скачать установщик:** https://github.com/fsb-helper-ru/slovo/releases/latest/download/Slovo-Setup.exe
+- **Скачать установщик:** на странице последнего выпуска — https://github.com/fsb-helper-ru/slovo/releases/latest
 
 Программа работает по ключу. Ключ запрашивается из самой программы: при первом запуске напишите своё имя и нажмите «Запросить ключ».
 

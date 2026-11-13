@@ -33,7 +33,7 @@
         <h1>Слово<span class="caret" aria-hidden="true"></span></h1>
         <p class="tag">Редактор документов с&nbsp;помощником-нейросетью</p>
         <p class="lead">Пишите и оформляйте тексты, сохраняйте их в&nbsp;.docx и&nbsp;PDF, печатайте. Нейросеть исправит ошибки и поможет с&nbsp;конспектом, письмом или рефератом.</p>
-        <a class="cta" href="https://github.com/fsb-helper-ru/slovo/releases/latest/download/Slovo-Setup.exe" data-download>
+        <a class="cta" href="https://github.com/fsb-helper-ru/slovo/releases/download/v0.2.0/Slovo-0.2.0-Setup.exe" data-download>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11"/><path d="M7 11l5 5 5-5"/><path d="M5 20h14"/></svg>
           Скачать для Windows
         </a>
@@ -126,7 +126,7 @@
           <p>Когда владелец одобрит заявку, программа откроется сама. Окно можно закрыть и зайти позже — заявка сохранится.</p>
         </li>
       </ol>
-      <a class="cta" href="https://github.com/fsb-helper-ru/slovo/releases/latest/download/Slovo-Setup.exe" data-download>
+      <a class="cta" href="https://github.com/fsb-helper-ru/slovo/releases/download/v0.2.0/Slovo-0.2.0-Setup.exe" data-download>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11"/><path d="M7 11l5 5 5-5"/><path d="M5 20h14"/></svg>
         Скачать установщик
       </a>
@@ -170,7 +170,7 @@
       <details id="faq-sum">
         <summary>Как проверить, что установщик настоящий?</summary>
         <p>У каждого файла есть контрольная сумма — «отпечаток». Если у скачанного файла она совпадает с указанной здесь, файл не подменён и не повреждён.</p>
-        <p>Откройте PowerShell в папке с файлом и выполните: <span class="sum">Get-FileHash .\Slovo-Setup.exe</span></p>
+        <p>Откройте PowerShell в папке с файлом и выполните: <span class="sum" data-hashcmd>Get-FileHash .\Slovo-0.2.0-Setup.exe</span></p>
         <p>Должно получиться: <span class="sum" data-sha>сумма появится здесь после загрузки сведений о версии</span></p>
       </details>
       <details>
@@ -205,6 +205,13 @@
     if (foot) foot.textContent = 'Версия ' + v.version;
     var sha = document.querySelector('[data-sha]');
     if (sha && v.sha256) sha.textContent = String(v.sha256).toUpperCase();
+    // Ссылка на установщик — прямо на файл этой версии в выпуске на GitHub.
+    if (/^Slovo-[0-9.]+-Setup\.exe$/.test(v.file || '')) {
+      var url = 'https://github.com/fsb-helper-ru/slovo/releases/download/v' + v.version + '/' + v.file;
+      document.querySelectorAll('[data-download]').forEach(function (a) { a.href = url; });
+      var cmd = document.querySelector('[data-hashcmd]');
+      if (cmd) cmd.textContent = 'Get-FileHash .\\' + v.file;
+    }
   }).catch(function () {});
 </script>
 </body>
